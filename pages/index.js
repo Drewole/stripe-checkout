@@ -1,8 +1,13 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import CardForm from '../components/CardForm';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log('Submitted');
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -39,9 +44,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className={styles.form_container}>
-          <form action=""></form>
-        </section>
+        <CardForm />
       </main>
 
       <footer className={styles.footer}>
