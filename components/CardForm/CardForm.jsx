@@ -103,13 +103,9 @@ export default function CardForm() {
                   );
                 })}
               </select>
-              <div className="expiration_errors">
-                <div className="invalid-feedback">
-                  {errors.expirationMonth?.message}
-                </div>
-                <div className="invalid-feedback">
-                  {errors.expirationYear?.message}
-                </div>
+              <div role="alert" className={styles.errors}>
+                <div>{errors.expirationMonth?.message}</div>
+                <div>{errors.expirationYear?.message}</div>
               </div>
             </div>
           </div>

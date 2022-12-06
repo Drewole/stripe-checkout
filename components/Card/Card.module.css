@@ -1,0 +1,66 @@
+.card {
+  width: 400px;
+  height: 250px;
+  border-radius: 12px;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  box-shadow: 0 15px 30px 10px rgba(67, 77, 104, 0.3);
+  transform: translateY(100px);
+}
+.card_shiney {
+  width: 60px;
+  height: 40px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    #fff,
+    rgb(204, 204, 204),
+    rgb(247, 247, 227),
+    #fff
+  );
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+  background-size: 400% 400%;
+  animation: shine 10s ease infinite;
+}
+@keyframes shine {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -135% 0;
+  }
+}
+
+.row {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.card_numbers {
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.name,
+.expiration {
+  padding-top: 1rem;
+}
+.name span,
+.expiration span {
+  font-size: 0.75rem;
+}
+.name p {
+  text-transform: uppercase;
+  margin: 0;
+  padding-top: 0.25rem;
+}
+.expiration p {
+  margin: 0;
+  padding-top: 0.25rem;
+}
+.expiration span {
+  display: block;
+  text-align: right;
+}
