@@ -21,7 +21,7 @@ export default function CardForm() {
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
-  console.log('formState', formState);
+
   const { errors } = formState;
   const currentYear = new Date().getFullYear();
   const nextTenYears = Array.from(
@@ -49,7 +49,9 @@ export default function CardForm() {
             label={'Card Holder'}
             name={'Card Holder'}
             type={'text'}
-            register={register('cardholder')}
+            register={register('cardholder', {
+              required: true,
+            })}
             errors={errors.cardHolder}
           />
         </div>
@@ -59,10 +61,11 @@ export default function CardForm() {
             <div className={styles.expiration_date_wrapper}>
               <select
                 name="expirationMonth"
-                {...register('expirationMonth')}
-                className={`form-control ${
-                  errors.expirationMonth ? 'is-invalid' : ''
+                {...register('expirationMonth', { required: true })}
+                className={`${styles.select} ${
+                  errors.expirationMonth ? styles.invalid : null
                 }`}
+                errors={errors.expirationMonth}
               >
                 <option defaultValue value="">
                   Month
@@ -83,10 +86,11 @@ export default function CardForm() {
               </select>
               <select
                 name="expirationYear"
-                {...register('expirationYear')}
-                className={`form-control ${
-                  errors.expirationYear ? 'is-invalid' : ''
+                {...register('expirationYear', { required: true })}
+                className={`${styles.select} ${
+                  errors.expirationYear ? styles.invalid : null
                 }`}
+                errors={errors.expirationYear}
               >
                 <option defaultValue value="">
                   Year
