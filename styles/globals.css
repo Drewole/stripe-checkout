@@ -1,28 +1,42 @@
 :root {
-  --color-primary: #2364d2;
+  --color-white: #fff;
+  --color-off-white: rgb(228, 228, 228);
+  --color-primary: #1b3c5e;
   --color-secondary: #ff0070;
+  --color-dark-gray: #768394;
   --color-light-blue: #ddeefb;
+  --color-input-outline: #e0e5ec;
+
+  /* credit card brand colors */
+  --color-visa: #1a1f71;
+  --color-american-express: #2e77bc;
+  --color-mastercard: #eb001b;
+  --color-discover: #ff6600;
 }
 
 @font-face {
   font-family: 'Hubot Regular';
   src: url(../public/fonts/Hubot-Sans-Regular.woff) format('woff');
   font-display: block;
+  font-weight: 400;
 }
 @font-face {
   font-family: 'Hubot Light';
   src: url(../public/fonts/Hubot-Sans-Light.woff) format('woff');
   font-display: block;
+  font-weight: 300;
 }
 @font-face {
   font-family: 'Hubot Bold';
   src: url(../public/fonts/Hubot-Sans-Bold.woff) format('woff');
   font-display: block;
+  font-weight: 700;
 }
 @font-face {
   font-family: 'Hubot Black';
   src: url(../public/fonts/Hubot-Sans-Black.woff) format('woff');
   font-display: block;
+  font-weight: 900;
 }
 
 html,
@@ -30,6 +44,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Hubot Regular', sans-serif;
+  color: var(--color-primary);
+  background: var(--color-light-blue);
 }
 
 a {
@@ -40,13 +56,33 @@ a {
 * {
   box-sizing: border-box;
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: var(--color-primary);
-    background: var(--color-light-blue);
-  }
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+section {
+  width: 100%;
+}
+label {
+  font-size: 0.75rem;
+  padding-bottom: 0.5rem;
+  font-family: ;
+}
+input[type='text'] {
+  padding: 1rem;
+  border-radius: 6px;
+  outline: none;
+  border: 2px solid var(--color-input-outline);
+  font-size: 1.75rem;
+  color: var(--color-dark-gray);
+  transition: color 0.25s ease-out, border 0.25s ease-out;
+}
+input[type='text']:focus {
+  outline: none;
+  color: var(--color-primary);
+  border-color: var(--color-dark-gray);
 }
