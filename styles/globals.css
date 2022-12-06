@@ -7,6 +7,8 @@
   --color-light-blue: #ddeefb;
   --color-input-outline: #e0e5ec;
 
+  --color-error: var(--color-secondary);
+
   /* credit card brand colors */
   --color-visa: #1a1f71;
   --color-american-express: #2e77bc;
@@ -15,35 +17,19 @@
 }
 
 @font-face {
-  font-family: 'Hubot Regular';
-  src: url(../public/fonts/Hubot-Sans-Regular.woff) format('woff');
-  font-display: block;
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'Hubot Light';
-  src: url(../public/fonts/Hubot-Sans-Light.woff) format('woff');
-  font-display: block;
-  font-weight: 300;
-}
-@font-face {
-  font-family: 'Hubot Bold';
-  src: url(../public/fonts/Hubot-Sans-Bold.woff) format('woff');
-  font-display: block;
-  font-weight: 700;
-}
-@font-face {
-  font-family: 'Hubot Black';
-  src: url(../public/fonts/Hubot-Sans-Black.woff) format('woff');
-  font-display: block;
-  font-weight: 900;
+  font-family: 'Hubot Sans';
+  src: url(../public/fonts/Hubot-Sans.woff2) format('woff2 supports variations'),
+    url(../public/fonts/Hubot-Sans.woff2) format('woff2-variations');
+  font-weight: 200 400 500 700 900;
+  font-stretch: 75% 125%;
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Hubot Regular', sans-serif;
+  font-family: 'Hubot Sans', sans-serif;
+  font-weight: 400;
   color: var(--color-primary);
   background: var(--color-light-blue);
 }
@@ -55,6 +41,11 @@ a {
 
 * {
   box-sizing: border-box;
+}
+header {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 200;
 }
 main {
   display: flex;

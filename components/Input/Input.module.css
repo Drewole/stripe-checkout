@@ -3,3 +3,6 @@
   flex-direction: column;
   margin-bottom: 1rem;
 }
+.invalid {
+  border-color: var(--color-error);
+}
