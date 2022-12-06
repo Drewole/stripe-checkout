@@ -36,7 +36,8 @@ export default function CardForm() {
           <Input
             label="Card Number"
             name="cardNumber"
-            type="text"
+            type="number"
+            maxlength={isAmex ? 17 : 16}
             register={register('cardNumber', {
               required: true,
               maxLength: isAmex ? 17 : 16,

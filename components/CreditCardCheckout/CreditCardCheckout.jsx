@@ -7,7 +7,7 @@ export function CreditCardCheckout() {
   return (
     <section className={styles.container}>
       <Card
-        cardNumber={1234567812345678}
+        cardNumber={12345678123456789}
         cardHolder={'Drew Olsen'}
         expirationMonth={11}
         expirationYear={2027}
