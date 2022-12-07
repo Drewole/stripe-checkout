@@ -17,7 +17,9 @@
 .expiration_date_wrapper {
   display: flex;
   margin-top: 0.25rem;
+  width: 60%;
 }
 .ccv {
   width: 80px;
+  margin-bottom: 0;
 }

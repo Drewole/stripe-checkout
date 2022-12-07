@@ -45,7 +45,7 @@ export default function CardForm() {
   return (
     <section className={styles.form_container}>
       <form onSubmit={() => onSubmit()}>
-        <div className={styles.row}>
+        <div className={[styles.row, styles.number]}>
           <Input
             label="Card Number"
             name="cardNumber"
@@ -58,9 +58,8 @@ export default function CardForm() {
             errors={errors.cardNumber}
           />
         </div>
-        <div className={styles.row}>
+        <div className={[styles.row, styles.holder]}>
           <Input
-            class
             label={'Card Holder'}
             name={'Card Holder'}
             type={'text'}
@@ -71,7 +70,7 @@ export default function CardForm() {
           />
         </div>
         <div className={styles.row}>
-          <div className={styles.form_input_group}>
+          <div className={[styles.form_input_group, styles]}>
             <label>Expiration Date</label>
             <div className={styles.expiration_date_wrapper}>
               <select
