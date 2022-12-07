@@ -16,6 +16,13 @@ export default function CardForm() {
     expirationYear: Yup.string().required('Expiration Date is required'),
     ccv: Yup.string().min(3, 'ccv required').max(4).required('CCV is required'),
   });
+  const initialValues = {
+    cardHolder: '',
+    cardNumber: '',
+    expirationMonth: '',
+    expirationYear: '',
+    ccv: '',
+  };
   const formOptions = { resolver: yupResolver(validationSchema) };
   const isAmex = false;
 
@@ -29,9 +36,15 @@ export default function CardForm() {
     (val, index) => index + currentYear
   );
 
+  function onSubmit(data) {
+    // display form data on success
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(data, null, 4));
+    return false;
+  }
+
   return (
     <section className={styles.form_container}>
-      <form onSubmit={() => handleSubmit()}>
+      <form onSubmit={() => onSubmit()}>
         <div className={styles.row}>
           <Input
             label="Card Number"
@@ -47,6 +60,7 @@ export default function CardForm() {
         </div>
         <div className={styles.row}>
           <Input
+            class
             label={'Card Holder'}
             name={'Card Holder'}
             type={'text'}
@@ -109,6 +123,19 @@ export default function CardForm() {
                 <div>{errors.expirationYear?.message}</div>
               </div>
             </div>
+          </div>
+          <div className={styles.form_input_group}>
+            <Input
+              label={'CCV'}
+              className={styles.ccv}
+              name={'ccv'}
+              type={'number'}
+              maxlength={isAmex ? 4 : 3}
+              register={register('cardholder', {
+                required: true,
+              })}
+              errors={errors.cardHolder}
+            />
           </div>
         </div>
       </form>

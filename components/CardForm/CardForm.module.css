@@ -7,7 +7,17 @@
   max-width: 550px;
   box-shadow: 0px 23px 60px 0px rgba(67, 77, 104, 0.3);
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 .expiration_date_wrapper {
   display: flex;
   margin-top: 0.25rem;
+}
+.ccv {
+  width: 80px;
 }

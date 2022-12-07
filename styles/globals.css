@@ -5,15 +5,18 @@
   --color-secondary: #ff0070;
   --color-dark-gray: #768394;
   --color-light-blue: #ddeefb;
-  --color-input-outline: #e0e5ec;
+  --color-light-gray: #e0e5ec;
 
   --color-error: var(--color-secondary);
 
   /* credit card brand colors */
   --color-visa: #1a1f71;
-  --color-american-express: #2e77bc;
+  --color-amex: #2e77bc;
   --color-mastercard: #eb001b;
   --color-discover: #ff6600;
+
+  /* other items */
+  --input-padding: 0.75rem;
 }
 
 @font-face {
@@ -65,17 +68,29 @@ label {
 }
 input[type='text'],
 input[type='number'] {
-  padding: 1rem;
+  padding: var(--input-padding);
+  width: 100%;
   border-radius: 6px;
   outline: none;
-  border: 2px solid var(--color-input-outline);
-  font-size: 1.75rem;
+  border: 2px solid var(--color-light-gray);
+  font-size: 1.4rem;
   color: var(--color-dark-gray);
   transition: color 0.25s ease-out, border 0.25s ease-out;
 }
+
 input[type='text']:focus,
-input[type='text']:active {
+input[type='number']:focus {
   outline: none;
   color: var(--color-primary);
   border-color: var(--color-dark-gray);
+}
+
+select {
+  padding: var(--input-padding);
+  border-radius: 6px;
+  outline: none;
+  border: 2px solid var(--color-light-gray);
+  font-size: 1.4rem;
+  color: var(--color-dark-gray);
+  transition: color 0.25s ease-out, border 0.25s ease-out;
 }

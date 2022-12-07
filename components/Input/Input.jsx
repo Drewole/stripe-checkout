@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Input.module.css';
 
-export function Input({ label, name, type, register, errors }) {
+export function Input({ className, label, name, type, register, errors }) {
   return (
-    <div className={styles.form_input_group}>
+    <div className={`${className ? className : ''} ${styles.form_input_group}`}>
       <label>{label || 'Label'}</label>
       <input
         name={name || 'input'}
