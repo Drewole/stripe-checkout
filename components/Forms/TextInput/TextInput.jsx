@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Input.module.css';
+import styles from './TextInput.module.css';
 
-export function Input({ className, label, name, type, register, errors }) {
+export function TextInput({ className, label, name, type, register, errors }) {
   return (
     <div className={`${className ? className : ''} ${styles.form_input_group}`}>
       <label>{label ? label : 'Label'}</label>

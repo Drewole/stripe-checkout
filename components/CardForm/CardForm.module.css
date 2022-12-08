@@ -15,8 +15,11 @@
   align-items: center;
   padding-bottom: 1rem;
 }
+
 .form_input_group {
-  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .expiration_date_wrapper {
   display: flex;
@@ -51,4 +54,8 @@
 }
 .submit:focus {
   outline: none;
+}
+
+.invalid {
+  border-color: var(--color-error);
 }

@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import styles from './CardForm.module.css';
-import { Input } from '../Input/Input';
+import { TextInput } from '../Forms/TextInput/TextInput';
 import { useEffect } from 'react';
 
 export default function CardForm({ setCardInfo }) {
@@ -33,6 +33,9 @@ export default function CardForm({ setCardInfo }) {
 
   console.log('formState', formState);
   const values = getValues();
+  useEffect(() => {
+    console.log('values', values);
+  }, [values]);
 
   const { errors } = formState;
   const currentYear = new Date().getFullYear();
@@ -41,38 +44,53 @@ export default function CardForm({ setCardInfo }) {
     (val, index) => index + currentYear
   );
 
-  function onSubmit(data) {
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(data, null, 4));
-    console.log('data', data);
-    return false;
-  }
+  const onSubmit = (data) => console.log('submitted Data', data);
 
   return (
     <section className={styles.form_container}>
-      <form onSubmit={() => handleSubmit(onSubmit(data))}>
+      <form onSubmit={() => handleSubmit(onSubmit())}>
         <div className={`${styles.row} ${styles.number}`}>
-          <Input
-            label="Card Number"
-            name="cardNumber"
-            type="number"
-            maxlength={isAmex ? 17 : 16}
-            {...register('cardNumber', {
-              required: true,
-              maxLength: isAmex ? 17 : 16,
-            })}
-            errors={errors.cardNumber}
-          />
+          <div className={`${styles.form_input_group}`}>
+            <label>Card Number</label>
+            <input
+              name={'cardNumber'}
+              type={'number'}
+              aria-invalid={errors ? 'true' : 'false'}
+              className={`${styles.form_input} ${
+                errors ? styles.invalid : null
+              }`}
+              maxLength={isAmex ? 17 : 16}
+              {...register('cardNumber', {
+                required: true,
+                maxLength: isAmex ? 17 : 16,
+              })}
+              errors={errors.cardNumber}
+            />
+            <div role="alert" className={styles.isInvalid}>
+              {errors.cardNumber?.message}
+            </div>
+          </div>
         </div>
         <div className={`${styles.row} ${styles.holder}`}>
-          <Input
-            label={'Card Holder'}
-            name={'Card Holder'}
-            type={'text'}
-            {...register('cardholder', {
-              required: true,
-            })}
-            errors={errors.cardHolder}
-          />
+          <div className={`${styles.form_input_group}`}>
+            <label>Card Holder</label>
+            <input
+              name={'cardHolder'}
+              type={'text'}
+              aria-invalid={errors ? 'true' : 'false'}
+              className={`${styles.form_input} ${
+                errors ? styles.invalid : null
+              }`}
+              maxLength={isAmex ? 17 : 16}
+              {...register('cardHolder', {
+                required: true,
+              })}
+              errors={errors.cardHolder}
+            />
+            <div role="alert" className={styles.isInvalid}>
+              {errors.cardHolder?.message}
+            </div>
+          </div>
         </div>
         <div className={styles.row}>
           <div className={`${styles.form_input_group} ${styles.expiration}`}>
@@ -81,7 +99,7 @@ export default function CardForm({ setCardInfo }) {
               <select
                 name="expirationMonth"
                 {...register('expirationMonth', { required: true })}
-                className={`${errors.expirationMonth ? styles.invalid : null}`}
+                className={`${errors.expirationMonth ? styles.invalid : ''}`}
                 errors={errors.expirationMonth}
               >
                 <option defaultValue value="">
@@ -125,19 +143,22 @@ export default function CardForm({ setCardInfo }) {
             </div>
           </div>
           <div className={`${styles.form_input_group} ${styles.cvv_wrapper}`}>
-            <Input
-              label={'CVV'}
-              className={styles.cvv}
+            <label>CVV</label>
+            <input
               name={'cvv'}
-              type={'number'}
-              maxlength={isAmex ? 4 : 3}
+              type={'text'}
+              aria-invalid={errors ? 'true' : 'false'}
+              className={`${styles.form_input} ${
+                errors ? styles.invalid : null
+              }`}
+              maxLength={isAmex ? 4 : 3}
               {...register('cvv', {
                 required: true,
               })}
               errors={errors.cvv}
             />
-            <div role="alert" className={styles.errors}>
-              <div>{errors.cvv?.message}</div>
+            <div role="alert" className={styles.isInvalid}>
+              {errors.cvv?.message}
             </div>
           </div>
         </div>
