@@ -10,7 +10,7 @@ export default function Card({
   cardHolder,
   expirationMonth,
   expirationYear,
-  ccv,
+  cvv,
 }) {
   const isAmex = cardNumber.toString().startsWith('3');
   const visaColor = '#1a1f71';
@@ -32,7 +32,7 @@ export default function Card({
       return amexColor;
     }
   };
-  console.log('card color', cardColor());
+
   function setCardLogo() {
     if (startsWithNumber('4')) {
       return <Visa fill={visaColor} />;
@@ -57,10 +57,11 @@ export default function Card({
 
   return (
     <div className={styles.card}>
+      <div className={styles.magnetic_strip} />
       <div className={styles.row}>
         <div className={styles.card_shiney} />
         <div className={styles.card_icon}>
-          {cardNumber ? setCardLogo() : 'XXXX XXXX XXXX XXXX'}
+          {cardNumber ? setCardLogo() : null}
         </div>
       </div>
       <div className={styles.row}>

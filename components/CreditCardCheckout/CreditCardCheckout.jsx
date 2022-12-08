@@ -9,7 +9,7 @@ export function CreditCardCheckout() {
     cardHolder: '',
     expirationMonth: '',
     expirationYear: '',
-    ccv: '',
+    cvv: '',
   });
 
   return (
@@ -20,9 +20,9 @@ export function CreditCardCheckout() {
         cardHolder={'Drew Olsen'}
         expirationMonth={11}
         expirationYear={2027}
-        ccv={345}
+        cvv={345}
       />
-      <CardForm setCardInfo={setCardInfo} cardInfo={cardInfo} />
+      <CardForm setCardInfo={setCardInfo} />
     </section>
   );
 }

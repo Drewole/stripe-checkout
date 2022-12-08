@@ -3,6 +3,7 @@
   --color-off-white: rgb(228, 228, 228);
   --color-primary: #1b3c5e;
   --color-secondary: #ff0070;
+  --color-bright-blue: #2364d2;
   --color-dark-gray: #768394;
   --color-light-blue: #ddeefb;
   --color-light-gray: #e0e5ec;
@@ -14,6 +15,10 @@
   --color-amex: #2e77bc;
   --color-mastercard: #eb001b;
   --color-discover: #ff6600;
+
+  /* other */
+  --input-transition: color 0.15s ease-out, border 0.15s ease-out;
+  --submit-transition: 0.15s ease-out;
 }
 
 @font-face {
@@ -47,6 +52,18 @@ header {
   text-transform: uppercase;
   font-weight: 900;
 }
+footer {
+  text-align: center;
+  padding: 6rem 0 2rem;
+  font-size: 0.75rem;
+  color: var(--color-dark-gray);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+footer a {
+  color: var(--color-primary);
+  font-weight: 500;
+}
 main {
   display: flex;
   flex-direction: column;
@@ -71,9 +88,9 @@ input[type='number'] {
   border-radius: 6px;
   outline: none;
   border: 2px solid var(--color-light-gray);
-  font-size: 1.4rem;
+  font-size: 1rem;
   color: var(--color-dark-gray);
-  transition: color 0.25s ease-out, border 0.25s ease-out;
+  transition: var(--input-transition);
 }
 
 input[type='text']:focus,
@@ -99,11 +116,20 @@ select {
   background-image: url("data:image/svg+xml,%3Csvg width='15px' fill='%23768394' xmlns='http://www.w3.org/2000/svg' x='0' y='0' style='enable-background:new 0 0 330 330' version='1.1' viewBox='0 0 330 330'%3E%3Cpath id='XMLID_225_' d='M325.607 79.393c-5.857-5.857-15.355-5.858-21.213.001l-139.39 139.393L25.607 79.393c-5.857-5.857-15.355-5.858-21.213.001-5.858 5.858-5.858 15.355 0 21.213l150.004 150a14.999 14.999 0 0 0 21.212-.001l149.996-150c5.859-5.857 5.859-15.355.001-21.213z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.7rem top 50%, 0 0;
-  padding: 0.9rem 3rem 0.9rem 0.9rem;
+  padding: 0.9rem 3rem 0.9rem 1.5rem;
+  margin-right: 0.5rem;
   border-radius: 6px;
   outline: none;
   border: 2px solid var(--color-light-gray);
   font-size: 1rem;
   color: var(--color-dark-gray);
-  transition: color 0.25s ease-out, border 0.25s ease-out;
+  transition: var(--input-transition);
+}
+select:focus {
+  border-color: var(--color-dark-gray);
+}
+@media screen and (max-width: 500px) {
+  select {
+    padding: 0.9rem 2rem 0.9rem 0.5rem;
+  }
 }

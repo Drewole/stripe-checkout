@@ -3,8 +3,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import styles from './CardForm.module.css';
 import { Input } from '../Input/Input';
+import { useEffect } from 'react';
 
-export default function CardForm() {
+export default function CardForm({ setCardInfo }) {
   // The Rules
   const validationSchema = Yup.object().shape({
     cardHolder: Yup.string().required('Cardholder Name is required'),
@@ -14,20 +15,24 @@ export default function CardForm() {
       .required('Card Number is required'),
     expirationMonth: Yup.string().required('Expiration Date is required'),
     expirationYear: Yup.string().required('Expiration Date is required'),
-    ccv: Yup.string().min(3, 'ccv required').max(4).required('CCV is required'),
+    cvv: Yup.string().min(3, 'cvv required').max(4).required('cvv is required'),
   });
   const initialValues = {
     cardHolder: '',
     cardNumber: '',
     expirationMonth: '',
     expirationYear: '',
-    ccv: '',
+    cvv: '',
   };
+  // get functions to build form with useForm() hook
   const formOptions = { resolver: yupResolver(validationSchema) };
+  const { register, handleSubmit, reset, formState, getValues } =
+    useForm(formOptions);
+
   const isAmex = false;
 
-  // get functions to build form with useForm() hook
-  const { register, handleSubmit, reset, formState } = useForm(formOptions);
+  console.log('formState', formState);
+  const values = getValues();
 
   const { errors } = formState;
   const currentYear = new Date().getFullYear();
@@ -37,48 +42,46 @@ export default function CardForm() {
   );
 
   function onSubmit(data) {
-    // display form data on success
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(data, null, 4));
+    console.log('data', data);
     return false;
   }
 
   return (
     <section className={styles.form_container}>
-      <form onSubmit={() => onSubmit()}>
-        <div className={[styles.row, styles.number]}>
+      <form onSubmit={() => handleSubmit(onSubmit(data))}>
+        <div className={`${styles.row} ${styles.number}`}>
           <Input
             label="Card Number"
             name="cardNumber"
             type="number"
             maxlength={isAmex ? 17 : 16}
-            register={register('cardNumber', {
+            {...register('cardNumber', {
               required: true,
               maxLength: isAmex ? 17 : 16,
             })}
             errors={errors.cardNumber}
           />
         </div>
-        <div className={[styles.row, styles.holder]}>
+        <div className={`${styles.row} ${styles.holder}`}>
           <Input
             label={'Card Holder'}
             name={'Card Holder'}
             type={'text'}
-            register={register('cardholder', {
+            {...register('cardholder', {
               required: true,
             })}
             errors={errors.cardHolder}
           />
         </div>
         <div className={styles.row}>
-          <div className={[styles.form_input_group, styles]}>
+          <div className={`${styles.form_input_group} ${styles.expiration}`}>
             <label>Expiration Date</label>
             <div className={styles.expiration_date_wrapper}>
               <select
                 name="expirationMonth"
                 {...register('expirationMonth', { required: true })}
-                className={`${styles.select} ${
-                  errors.expirationMonth ? styles.invalid : null
-                }`}
+                className={`${errors.expirationMonth ? styles.invalid : null}`}
                 errors={errors.expirationMonth}
               >
                 <option defaultValue value="">
@@ -101,9 +104,7 @@ export default function CardForm() {
               <select
                 name="expirationYear"
                 {...register('expirationYear', { required: true })}
-                className={`${styles.select} ${
-                  errors.expirationYear ? styles.invalid : null
-                }`}
+                className={`${errors.expirationYear ? styles.invalid : ''}`}
                 errors={errors.expirationYear}
               >
                 <option defaultValue value="">
@@ -123,19 +124,27 @@ export default function CardForm() {
               </div>
             </div>
           </div>
-          <div className={styles.form_input_group}>
+          <div className={`${styles.form_input_group} ${styles.cvv_wrapper}`}>
             <Input
-              label={'CCV'}
-              className={styles.ccv}
-              name={'ccv'}
+              label={'CVV'}
+              className={styles.cvv}
+              name={'cvv'}
               type={'number'}
               maxlength={isAmex ? 4 : 3}
-              register={register('cardholder', {
+              {...register('cvv', {
                 required: true,
               })}
-              errors={errors.cardHolder}
+              errors={errors.cvv}
             />
+            <div role="alert" className={styles.errors}>
+              <div>{errors.cvv?.message}</div>
+            </div>
           </div>
+        </div>
+        <div className={styles.row}>
+          <button type="submit" className={styles.submit}>
+            Submit
+          </button>
         </div>
       </form>
     </section>

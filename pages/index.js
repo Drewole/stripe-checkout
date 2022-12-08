@@ -27,13 +27,16 @@ export default function Home() {
       </main>
 
       <footer>
-        <a
-          href="https://drewolsen.design"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Drew Olsen
-        </a>
+        <p>
+          Built By{' '}
+          <a
+            href="https://drewolsen.design"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Drew Olsen
+          </a>
+        </p>
       </footer>
     </div>
   );
