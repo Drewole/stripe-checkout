@@ -1,33 +1,11 @@
 import { Controller } from 'react-hook-form';
 import ErrorMessage from './../ErrorMessage/ErrorMessage';
+import { middleware } from '../formUtils';
 import Label from './../Label/Label';
-import { useFormContext } from './FormProvider';
-import { v4 as uuidv4 } from 'uuid';
+import { useFormContext } from '../FormProvider';
+// import { v4 as uuidv4 } from 'uuid';
 
-const UUID = uuidv4();
-
-StandardInput.propTypes = {
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  type: PropTypes.string,
-  label: PropTypes.string,
-  rules: PropTypes.object,
-  defaultValue: PropTypes.string,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  middleware: PropTypes.func,
-  hiddenValue: PropTypes.string,
-};
-
-StandardInput.defaultProps = {
-  name: 'input',
-  label: 'Label',
-  placeholder: '',
-  type: 'text',
-  defaultValue: '',
-  className: '',
-  middleware: (value) => value,
-};
+// const UUID = uuidv4();
 
 export default function StandardInput({
   name,
@@ -42,7 +20,7 @@ export default function StandardInput({
   middleware,
 }) {
   const { control, errors } = useFormContext();
-  const id = `${name}__${UUID}`;
+  const id = `${name}`;
 
   return (
     <Controller
@@ -69,7 +47,7 @@ export default function StandardInput({
               />
             </Label>
           </div>
-          <ErrorMessage error={errors[name]} />
+          {/* <ErrorMessage error={errors[name]} /> */}
         </div>
       )}
     />

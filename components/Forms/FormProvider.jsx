@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import useAppState from '../providers/AppProvider';
 
 const FormContext = createContext({});
 
@@ -34,7 +33,7 @@ export default function FormProvider({
     );
 
   const submitHandler = handleSubmit((formData, addData) => {
-    //TODO: Function posting to stripe API will go here if I cant get it into next js's backend
+    //TODO: Function posting to stripe API will go here, first pointing to proxy in nextjs and straight to stripe here if I cant get it into next js's backend
 
     submit({ ...formData, ...additionalData })
       .then((resp) => {

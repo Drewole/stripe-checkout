@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import Card from '../Card/Card';
 import CardForm from '../CardForm/CardForm';
+// import CardForm2 from '../CardForm/CardForm2';
+// import FormProvider from '../Forms/FormProvider';
+// import { Elements } from '@stripe/react-stripe-js';
+// import StripeForm from '../StripeForm/StripeForm';
 import styles from './CreditCardCheckout.module.css';
 
 export function CreditCardCheckout() {
@@ -22,7 +26,7 @@ export function CreditCardCheckout() {
         expirationYear={2027}
         cvv={345}
       />
-      <CardForm setCardInfo={setCardInfo} />
+      <CardForm />
     </section>
   );
 }
