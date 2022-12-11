@@ -45,6 +45,7 @@ export default function CardForm({ setCardInfo }) {
   const onSubmit = (data) => {
     debugger;
     console.log('submitted Data', data);
+    console.log('values', values);
   };
 
   return (
@@ -58,25 +59,12 @@ export default function CardForm({ setCardInfo }) {
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <>
-                  <input
-                    {...field}
-                    type={'number'}
-                    aria-invalid={errors ? 'true' : 'false'}
-                    className={`${styles.form_input} ${
-                      errors ? styles.invalid : null
-                    }`}
-                    maxLength={isAmex ? 17 : 16}
-                    {...register('card_number', {
-                      required: true,
-                      maxLength: isAmex ? 17 : 16,
-                    })}
-                    errors={errors.card_number}
-                  />
-                  <div role="alert" className={styles.isInvalid}>
-                    {errors.card_number?.message}
-                  </div>
-                </>
+                <input
+                  {...field}
+                  type="number"
+                  aria-invalid={errors ? 'true' : 'false'}
+                  maxLength={isAmex ? 17 : 16}
+                />
               )}
             />
           </div>
@@ -89,24 +77,7 @@ export default function CardForm({ setCardInfo }) {
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <>
-                  <input
-                    {...field}
-                    type={'text'}
-                    aria-invalid={errors ? 'true' : 'false'}
-                    className={`${styles.form_input} ${
-                      errors ? styles.invalid : null
-                    }`}
-                    maxLength={isAmex ? 17 : 16}
-                    {...register('card_holder', {
-                      required: true,
-                    })}
-                    errors={errors.card_holder}
-                  />
-                  <div role="alert" className={styles.isInvalid}>
-                    {errors.card_holder?.message}
-                  </div>
-                </>
+                <input {...field} type={'text'} maxLength={isAmex ? 17 : 16} />
               )}
             />
           </div>
@@ -118,59 +89,47 @@ export default function CardForm({ setCardInfo }) {
               <Controller
                 name="expiration_month"
                 control={control}
+                rules={{ required: true }}
                 defaultValue=""
                 render={({ field }) => (
-                  <>
-                    <select
-                      {...field}
-                      {...register('expiration_month', { required: true })}
-                      errors={errors.expiration_month}
-                    >
-                      <option defaultValue value="">
-                        Month
-                      </option>
-                      {Array.from(Array(12).keys()).map((month) => {
-                        const formattedNumber = (num) => {
-                          return num.toLocaleString('en-US', {
-                            minimumIntegerDigits: 2,
-                            useGrouping: false,
-                          });
-                        };
-                        return (
-                          <option
-                            key={month}
-                            value={formattedNumber(month + 1)}
-                          >
-                            {formattedNumber(month + 1)}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </>
+                  <select {...field}>
+                    <option defaultValue value="">
+                      Month
+                    </option>
+                    {Array.from(Array(12).keys()).map((month) => {
+                      const formattedNumber = (num) => {
+                        return num.toLocaleString('en-US', {
+                          minimumIntegerDigits: 2,
+                          useGrouping: false,
+                        });
+                      };
+                      return (
+                        <option key={month} value={formattedNumber(month + 1)}>
+                          {formattedNumber(month + 1)}
+                        </option>
+                      );
+                    })}
+                  </select>
                 )}
               />
               <Controller
                 name="expiration_year"
                 control={control}
                 defaultValue=""
+                rules={{ required: true }}
                 render={({ field }) => (
-                  <>
-                    <select
-                      rules={{ required: true }}
-                      errors={errors.expiration_year}
-                    >
-                      <option defaultValue value="">
-                        Year
-                      </option>
-                      {nextTenYears.map((year) => {
-                        return (
-                          <option key={year} value={year}>
-                            {year}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </>
+                  <select {...field}>
+                    <option defaultValue value="">
+                      Year
+                    </option>
+                    {nextTenYears.map((year) => {
+                      return (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      );
+                    })}
+                  </select>
                 )}
               />
             </div>
@@ -181,20 +140,9 @@ export default function CardForm({ setCardInfo }) {
               name="cvv"
               control={control}
               defaultValue=""
+              rules={{ required: true, maxLength: isAmex ? 4 : 3 }}
               render={({ field }) => (
-                <>
-                  <input
-                    {...field}
-                    type={'text'}
-                    aria-invalid={errors ? 'true' : 'false'}
-                    maxLength={isAmex ? 17 : 16}
-                    rules={{ required: true, maxLength: isAmex ? 4 : 3 }}
-                    errors={errors.cvv}
-                  />
-                  <div role="alert" className={styles.isInvalid}>
-                    {errors.cvv?.message}
-                  </div>
-                </>
+                <input {...field} type={'text'} maxLength={isAmex ? 17 : 16} />
               )}
             />
           </div>

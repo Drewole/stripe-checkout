@@ -4,10 +4,6 @@ import CardForm from '../components/CardForm/CardForm';
 import { CreditCardCheckout } from '../components/CreditCardCheckout/CreditCardCheckout';
 
 export default function Home() {
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log('Submitted');
-  }
   return (
     <div>
       <Head>
