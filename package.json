@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^2.9.10",
     "@stripe/react-stripe-js": "^1.16.0",
     "@stripe/stripe-js": "^1.46.0",
+    "card-validator": "^8.1.1",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
     "next": "13.0.6",
