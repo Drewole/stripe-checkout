@@ -21,18 +21,19 @@ export default function Card({
   function startsWithNumber(string) {
     return cardNumber.toString().startsWith(string);
   }
-  const cardColor = () => {
-    if (startsWithNumber('4')) {
-      return visaColor;
-    } else if (startsWithNumber('5')) {
-      return mastercardColor;
-    } else if (startsWithNumber('6')) {
-      return discoverColor;
-    } else if (isAmex) {
-      return amexColor;
-    }
-  };
+  // const cardColor = () => {
+  //   if (startsWithNumber('4')) {
+  //     return visaColor;
+  //   } else if (startsWithNumber('5')) {
+  //     return mastercardColor;
+  //   } else if (startsWithNumber('6')) {
+  //     return discoverColor;
+  //   } else if (isAmex) {
+  //     return amexColor;
+  //   }
+  // };
 
+  //TODO: This should be revisited
   function setCardLogo() {
     if (startsWithNumber('4')) {
       return <Visa fill={visaColor} />;
@@ -44,6 +45,7 @@ export default function Card({
       return <Amex fill={amexColor} />;
     }
   }
+  //NOTE: This won't allow individual animation for each number of the card as it's typed in. It would have to be re-written to break it up into individual motion.spans and then animate each one's presence individually. I can then target 4th, 8th, 12th, etc. (American Express would have to be different) spans to add a space within css and the nth-child selector.
   const cardNumberFormatted =
     cardNumber && isAmex
       ? cardNumber
@@ -54,7 +56,7 @@ export default function Card({
           .toString()
           .replace(/(\d{4})/g, '$1 ')
           .trim();
-
+  // I am really regretting going with vanilla CSS for this
   return (
     <div className={styles.card}>
       <div className={styles.magnetic_strip} />

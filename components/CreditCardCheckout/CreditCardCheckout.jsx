@@ -1,32 +1,38 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Card from '../Card/Card';
 import CardForm from '../CardForm/CardForm';
-// import CardForm2 from '../CardForm/CardForm2';
-// import FormProvider from '../Forms/FormProvider';
-// import { Elements } from '@stripe/react-stripe-js';
-// import StripeForm from '../StripeForm/StripeForm';
 import styles from './CreditCardCheckout.module.css';
 
 export function CreditCardCheckout() {
-  const [cardInfo, setCardInfo] = useState({
-    cardNumber: '',
-    cardHolder: '',
-    expirationMonth: '',
-    expirationYear: '',
+  const [visualCardInfo, setVisualCardInfo] = useState({
+    card_number: '',
+    card_holder: '',
+    expiration_month: '',
+    expiration_year: '',
     cvv: '',
   });
+  const { formState, getValues } = useForm();
+  useEffect(() => {
+    console.log('formState', formState);
+    console.log('visual card info', visualCardInfo);
+  }, [visualCardInfo]);
 
+  const { card_number, card_holder, expiration_month, expiration_year, cvv } =
+    visualCardInfo;
   return (
     <section className={styles.container}>
       <Card
-        isAmex
-        cardNumber={6345678123456789}
-        cardHolder={'Drew Olsen'}
-        expirationMonth={11}
-        expirationYear={2027}
-        cvv={345}
+        cardNumber={card_number ? card_number : 'xxxx xxxx xxxx xxxx'}
+        cardHolder={card_holder ? card_holder : 'Name'}
+        expirationMonth={expiration_month ? expiration_month : 'MM'}
+        expirationYear={expiration_year ? expiration_year : 'YY'}
+        cvv={cvv ? cvv : 'CVV'}
       />
-      <CardForm />
+      <CardForm
+        setVisualCardInfo={setVisualCardInfo}
+        visualCardInfo={visualCardInfo}
+      />
     </section>
   );
 }

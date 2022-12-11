@@ -4,15 +4,19 @@ import * as Yup from 'yup';
 import styles from './CardForm.module.css';
 import { TextInput } from '../Forms/TextInput/TextInput';
 import { useEffect } from 'react';
+import Label from '../Forms/Label/Label';
 
-export default function CardForm({ setCardInfo }) {
+export default function CardForm({ visualCardInfo, setVisualCardInfo }) {
   // The Rules
   const validationSchema = Yup.object().shape({
-    card_holder: Yup.string().required('card_holder Name is required'),
     card_number: Yup.string()
-      .min(16, 'Please check card number')
-      .max(17, 'Max 17 digits reached')
-      .required('Card Number is required'),
+      .test(
+        'test-number',
+        'Credit Card number is invalid',
+        (value) => valid.number(value).isValid
+      ) // return true false based on validation
+      .required(),
+    card_holder: Yup.string().required('card_holder Name is required'),
     expiration_month: Yup.string().required('Expiration Date is required'),
     expiration_year: Yup.string().required('Expiration Date is required'),
     cvv: Yup.string().min(3, 'cvv required').max(4).required('cvv is required'),
@@ -25,15 +29,13 @@ export default function CardForm({ setCardInfo }) {
     cvv: '',
   };
   // get functions to build form with useForm() hook
-  const { register, handleSubmit, control, reset, formState, getValues } =
-    useForm({
-      resolver: yupResolver(validationSchema),
-      defaultValues: initialValues,
-    });
+  const { register, handleSubmit, control, formState, getValues } = useForm({
+    mode: 'onSubmit',
+    resolver: yupResolver(validationSchema),
+    defaultValues: initialValues,
+  });
 
   const isAmex = false;
-
-  const values = getValues();
 
   const { errors } = formState;
   const currentYear = new Date().getFullYear();
@@ -43,9 +45,7 @@ export default function CardForm({ setCardInfo }) {
   );
 
   const onSubmit = (data) => {
-    debugger;
     console.log('submitted Data', data);
-    console.log('values', values);
   };
 
   return (
@@ -53,7 +53,7 @@ export default function CardForm({ setCardInfo }) {
       <form onSubmit={() => handleSubmit(onSubmit(data))}>
         <div className={`${styles.row} ${styles.number}`}>
           <div className={`${styles.form_input_group}`}>
-            <label>Card Number</label>
+            <Label>Card Number</Label>
             <Controller
               name="card_number"
               control={control}
@@ -61,9 +61,17 @@ export default function CardForm({ setCardInfo }) {
               render={({ field }) => (
                 <input
                   {...field}
-                  type="number"
+                  type="text"
                   aria-invalid={errors ? 'true' : 'false'}
                   maxLength={isAmex ? 17 : 16}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    field.onChange(value);
+                    setVisualCardInfo({
+                      ...visualCardInfo,
+                      card_number: value,
+                    });
+                  }}
                 />
               )}
             />
@@ -71,20 +79,31 @@ export default function CardForm({ setCardInfo }) {
         </div>
         <div className={`${styles.row} ${styles.holder}`}>
           <div className={`${styles.form_input_group}`}>
-            <label>Card Holder</label>
+            <Label>Card Holder</Label>
             <Controller
               name="card_holder"
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <input {...field} type={'text'} maxLength={isAmex ? 17 : 16} />
+                <input
+                  {...field}
+                  type={'text'}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    field.onChange(value);
+                    setVisualCardInfo({
+                      ...visualCardInfo,
+                      card_holder: value,
+                    });
+                  }}
+                />
               )}
             />
           </div>
         </div>
         <div className={styles.row}>
           <div className={`${styles.form_input_group} ${styles.expiration}`}>
-            <label>Expiration Date</label>
+            <Label>Expiration Date</Label>
             <div className={styles.expiration_date_wrapper}>
               <Controller
                 name="expiration_month"
@@ -92,7 +111,17 @@ export default function CardForm({ setCardInfo }) {
                 rules={{ required: true }}
                 defaultValue=""
                 render={({ field }) => (
-                  <select {...field}>
+                  <select
+                    {...field}
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      field.onChange(value);
+                      setVisualCardInfo({
+                        ...visualCardInfo,
+                        expiration_month: value,
+                      });
+                    }}
+                  >
                     <option defaultValue value="">
                       Month
                     </option>
@@ -118,7 +147,17 @@ export default function CardForm({ setCardInfo }) {
                 defaultValue=""
                 rules={{ required: true }}
                 render={({ field }) => (
-                  <select {...field}>
+                  <select
+                    {...field}
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      field.onChange(value);
+                      setVisualCardInfo({
+                        ...visualCardInfo,
+                        expiration_year: value,
+                      });
+                    }}
+                  >
                     <option defaultValue value="">
                       Year
                     </option>
@@ -135,22 +174,32 @@ export default function CardForm({ setCardInfo }) {
             </div>
           </div>
           <div className={`${styles.form_input_group} ${styles.cvv_wrapper}`}>
-            <label>CVV</label>
+            <Label>CVV</Label>
             <Controller
               name="cvv"
               control={control}
               defaultValue=""
               rules={{ required: true, maxLength: isAmex ? 4 : 3 }}
               render={({ field }) => (
-                <input {...field} type={'text'} maxLength={isAmex ? 17 : 16} />
+                <input
+                  {...field}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    field.onChange(value);
+                    setVisualCardInfo({
+                      ...visualCardInfo,
+                      cvv: value,
+                    });
+                  }}
+                  type={'text'}
+                  maxLength={isAmex ? 17 : 16}
+                />
               )}
             />
           </div>
         </div>
         <div className={styles.row}>
-          <button type="submit" className={styles.submit}>
-            Submit
-          </button>
+          <input type="submit" value="Submit" className={styles.submit} />
         </div>
       </form>
     </section>
