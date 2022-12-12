@@ -2,7 +2,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+Please use node version 14.20.0 or higher.
+
+Make sure you are on main branch and run yarn install or npm install to install all dependencies.
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -14,9 +18,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## NPM Packages Chosen
 
-<!-- Could have used -->
+#### Could have used
 
 [React Credit Cards](https://www.npmjs.com/package/react-credit-cards)
+
+#### Did Use
+
+[Card Validator](https://www.npmjs.com/package/card-validator)
 
 ### React Hook Form
 
