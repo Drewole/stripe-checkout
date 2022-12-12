@@ -24,7 +24,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 #### Did Use
 
+[React Hook Form](https://www.npmjs.com/package/react-hook-form)
+Very good react forms library with validation included.
+[Stripe](https://www.npmjs.com/package/stripe)
+Used to handle the payment processing. It has a lot of documentation and examples and was created by the stripe team so its reliable.
 [Card Validator](https://www.npmjs.com/package/card-validator)
+Used to validate the credit card number and expiration date. Simplifies validation of credit cards.
 
 ### React Hook Form
 
