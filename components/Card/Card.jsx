@@ -12,7 +12,7 @@ export default function Card({
   expirationYear,
   cvv,
 }) {
-  const isAmex = cardNumber.toString().startsWith('3');
+  const isAmex = cardNumber.toString().startsWith('37' || '34');
   const visaColor = '#1a1f71';
   const amexColor = '#2e77bc';
   const mastercardColor = '#eb001b';
@@ -21,17 +21,6 @@ export default function Card({
   function startsWithNumber(string) {
     return cardNumber.toString().startsWith(string);
   }
-  // const cardColor = () => {
-  //   if (startsWithNumber('4')) {
-  //     return visaColor;
-  //   } else if (startsWithNumber('5')) {
-  //     return mastercardColor;
-  //   } else if (startsWithNumber('6')) {
-  //     return discoverColor;
-  //   } else if (isAmex) {
-  //     return amexColor;
-  //   }
-  // };
 
   //TODO: This should be revisited
   function setCardLogo() {

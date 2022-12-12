@@ -80,6 +80,10 @@ label {
   padding-bottom: 0.5rem;
   font-weight: 500;
 }
+input,
+select {
+  margin-bottom: 10px;
+}
 input[type='text'],
 input[type='number'] {
   appearance: none;

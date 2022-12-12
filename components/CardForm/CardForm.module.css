@@ -57,5 +57,14 @@
 }
 
 .invalid {
-  border-color: var(--color-error);
+  border-color: var(--color-error) !important;
+}
+.error {
+  color: var(--color-error);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.expiration_error {
+  flex-basis: 100%;
 }

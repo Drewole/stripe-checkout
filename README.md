@@ -14,6 +14,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## NPM Packages Chosen
 
+<!-- Could have used -->
+
+[React Credit Cards](https://www.npmjs.com/package/react-credit-cards)
+
 ### React Hook Form
 
 Chosen for its ease of use and ability to handle form validation and submission. It also has a lot of documentation and examples to help with implementation.
