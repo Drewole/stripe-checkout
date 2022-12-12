@@ -13,10 +13,6 @@ export function CreditCardCheckout() {
     cvv: '',
   });
   const { formState, getValues } = useForm();
-  useEffect(() => {
-    console.log('formState', formState);
-    console.log('visual card info', visualCardInfo);
-  }, [visualCardInfo]);
 
   const { card_number, card_holder, expiration_month, expiration_year, cvv } =
     visualCardInfo;

@@ -1,17 +1,15 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
-const STRIPE_KEY =
-  'sk_test_51MAewqAimYsCeNwXoVLP63zvnfu8Qatj2CgdeJlxSPmZfjqaMDRd9pn0RzO5psArSLiz7w3ENfukLujcoK6wxoIx00MeXSACjI';
-
+const stripeKey = process.env.STRIPE_KEY;
 export default function handler(req, res) {
-  //Need to forward request to Stripe API
-  const stripe = new Stripe(STRIPE_KEY);
-  // console.log('stripe', stripe);
+  //We now forward the request to the Stripe API
+  console.log('stripe key', stripeKey);
+  const stripe = new Stripe(stripeKey);
   const { card_number, expiration_month, expiration_year, cvv } = req.body;
 
   if (!card_number || !expiration_month || !expiration_year || !cvv) {
     return res.status(400).json({ error: 'Missing required parameters' });
   }
+
   stripe.tokens
     .create({
       card: {
@@ -22,14 +20,9 @@ export default function handler(req, res) {
       },
     })
     .then((token) => {
-      console.log('token', token);
       res.status(200).json({ token });
     })
     .catch((err) => {
-      console.log('err', err);
       res.status(500).json({ error: err });
     });
-  // console.log('req', req);
-
-  console.log('req.body', req.body);
 }
