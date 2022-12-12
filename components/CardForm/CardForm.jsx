@@ -3,7 +3,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import styles from './CardForm.module.css';
 import { TextInput } from '../Forms/TextInput/TextInput';
-import { useEffect } from 'react';
 import Label from '../Forms/Label/Label';
 
 export default function CardForm({ visualCardInfo, setVisualCardInfo }) {
@@ -44,13 +43,17 @@ export default function CardForm({ visualCardInfo, setVisualCardInfo }) {
     (val, index) => index + currentYear
   );
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
+    debugger;
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(getValues(), null, 4));
+
+    debugger;
     console.log('submitted Data', data);
   };
 
   return (
     <section className={styles.form_container}>
-      <form onSubmit={() => handleSubmit(onSubmit(data))}>
+      <form onSubmit={() => handleSubmit(onSubmit())}>
         <div className={`${styles.row} ${styles.number}`}>
           <div className={`${styles.form_input_group}`}>
             <Label>Card Number</Label>
@@ -192,7 +195,7 @@ export default function CardForm({ visualCardInfo, setVisualCardInfo }) {
                     });
                   }}
                   type={'text'}
-                  maxLength={isAmex ? 17 : 16}
+                  maxLength={isAmex ? 4 : 3}
                 />
               )}
             />

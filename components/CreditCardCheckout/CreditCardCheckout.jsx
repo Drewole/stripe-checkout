@@ -26,8 +26,8 @@ export function CreditCardCheckout() {
         cardNumber={card_number ? card_number : 'xxxx xxxx xxxx xxxx'}
         cardHolder={card_holder ? card_holder : 'Name'}
         expirationMonth={expiration_month ? expiration_month : 'MM'}
-        expirationYear={expiration_year ? expiration_year : 'YY'}
-        cvv={cvv ? cvv : 'CVV'}
+        expirationYear={expiration_year ? expiration_year : 'YYYY'}
+        cvv={cvv}
       />
       <CardForm
         setVisualCardInfo={setVisualCardInfo}

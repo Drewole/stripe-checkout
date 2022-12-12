@@ -48,7 +48,7 @@
 }
 .submit:hover {
   box-shadow: 0 12px 12px 0 rgba(15, 50, 111, 0.3);
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   transform: translateY(-3px);
   cursor: pointer;
 }

@@ -69,6 +69,7 @@ export default function Card({
       <div className={styles.row}>
         <div className={styles.card_numbers}>{cardNumberFormatted}</div>
       </div>
+      <div className={styles.cvv}>{cvv ? cvv : ''}</div>
 
       <div className={styles.row}>
         <div className={styles.name}>
