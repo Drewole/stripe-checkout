@@ -68,3 +68,8 @@
 .expiration_error {
   flex-basis: 100%;
 }
+.success {
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-align: center;
+}

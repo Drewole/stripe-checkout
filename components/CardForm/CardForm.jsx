@@ -56,7 +56,7 @@ export default function CardForm({ visualCardInfo, setVisualCardInfo }) {
     });
     const data = await response.json();
     console.log('data', data);
-    if (data.success) {
+    if (data.token) {
       setSuccess(true);
     }
   };

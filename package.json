@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@hookform/resolvers": "^2.9.10",
     "card-validator": "^8.1.1",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
@@ -17,7 +16,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.40.0",
-    "stripe": "^11.3.0",
-    "yup": "^0.32.11"
+    "stripe": "^11.3.0"
   }
 }
