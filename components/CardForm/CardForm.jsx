@@ -132,6 +132,7 @@ export default function CardForm({ visualCardInfo, setVisualCardInfo }) {
                     className={errors.card_holder ? styles.invalid : ''}
                     {...field}
                     type={'text'}
+                    aria-invalid={errors ? 'true' : 'false'}
                     onChange={(e) => {
                       const { value } = e.target;
                       field.onChange(value);
@@ -161,6 +162,7 @@ export default function CardForm({ visualCardInfo, setVisualCardInfo }) {
                     <select
                       {...field}
                       className={errors.expiration_month ? styles.invalid : ''}
+                      aria-invalid={errors ? 'true' : 'false'}
                       onChange={(e) => {
                         const { value } = e.target;
                         field.onChange(value);
@@ -201,6 +203,7 @@ export default function CardForm({ visualCardInfo, setVisualCardInfo }) {
                     <select
                       {...field}
                       className={errors.expiration_year ? styles.invalid : ''}
+                      aria-invalid={errors ? 'true' : 'false'}
                       onChange={(e) => {
                         const { value } = e.target;
                         field.onChange(value);
@@ -246,6 +249,7 @@ export default function CardForm({ visualCardInfo, setVisualCardInfo }) {
                   <input
                     {...field}
                     className={errors.cvv ? styles.invalid : ''}
+                    aria-invalid={errors ? 'true' : 'false'}
                     onChange={(e) => {
                       const { value } = e.target;
                       field.onChange(value);
