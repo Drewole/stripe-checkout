@@ -40,7 +40,8 @@ Start the server
 
 I could have used the following:
 
-- [React Credit Cards](https://www.npmjs.com/package/react-credit-cards)
+- [React Credit Cards](https://www.npmjs.com/package/react-credit-cards) - Creates a credit card with animated flip and other interactions.
+- [Yup](https://www.npmjs.com/package/yup) - Would probably be a better option for long-term validation but thats really a topic for discussion.
 
 ## License
 
