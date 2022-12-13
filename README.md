@@ -1,38 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Credit Card Component using Stripe API
 
-## Getting Started
+Test project for learning stripe api package as well as demonstrating skill. Gettin them reps.
 
-Please use node version 14.20.0 or higher.
+## Authors
 
-Make sure you are on main branch and run yarn install or npm install to install all dependencies.
+- [@drewole](https://www.github.com/drewole)
 
-Then, run the development server:
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
+  git clone https://github.com/Drewole/stripe-checkout
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-## NPM Packages Chosen
+```bash
+  cd stripe-checkout
+```
 
-#### Could have used
+Install dependencies
 
-[React Credit Cards](https://www.npmjs.com/package/react-credit-cards)
+```bash
+  npm install or yarn install
+```
 
-#### Did Use
+Start the server
 
-[React Hook Form](https://www.npmjs.com/package/react-hook-form)
-Very good react forms library with validation included.
-[Stripe](https://www.npmjs.com/package/stripe)
-Used to handle the payment processing. It has a lot of documentation and examples and was created by the stripe team so its reliable.
-[Card Validator](https://www.npmjs.com/package/card-validator)
-Used to validate the credit card number and expiration date. Simplifies validation of credit cards.
+```bash
+  npm run start or yarn dev
+```
 
-### React Hook Form
+## Acknowledgements
 
-Chosen for its ease of use and ability to handle form validation and submission. It also has a lot of documentation and examples to help with implementation.
+- [React Hook Form](https://www.npmjs.com/package/react-hook-form) - Very good react forms library with validation included.
+- [Stripe](https://www.npmjs.com/package/stripe) - Used to handle the payment processing. It has a lot of documentation and examples and was created by the stripe team so its reliable.
+- [Card Validator](https://www.npmjs.com/package/card-validator) - Used to validate the credit card number and expiration date. Simplifies validation of credit cards.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+I could have used the following:
+
+- [React Credit Cards](https://www.npmjs.com/package/react-credit-cards)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

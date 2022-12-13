@@ -61,8 +61,14 @@ footer {
   text-transform: uppercase;
 }
 footer a {
-  color: var(--color-primary);
-  font-weight: 500;
+  color: var(--color-secondary);
+  transition: color 0.3s ease-out, box-shadow 0.3s ease-out;
+  font-weight: 600;
+  box-shadow: 0 1px 0 0 transparent;
+}
+footer a:hover {
+  color: var(--color-bright-blue);
+  box-shadow: 0 2px 1px 0 var(--color-dark-gray);
 }
 main {
   display: flex;
